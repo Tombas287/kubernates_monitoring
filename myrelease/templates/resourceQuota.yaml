@@ -1,0 +1,16 @@
+{{- if .Values.resourceQuota.enabled }}
+
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  creationTimestamp: null
+  name: {{include "myrelease.fullname" .}}--quota
+  namespace: default
+spec:
+    hard:
+        requests.cpu: {{ .Values.resourceQuota.requests.Cpu }}
+        requests.memory: {{ .Values.resourceQuota.requests.Memory }}
+        limits.cpu: {{ .Values.resourceQuota.limits.Cpu }}
+        limits.memory: {{ .Values.resourceQuota.limits.Memory }}
+
+{{- end }}
