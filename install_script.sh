@@ -11,7 +11,7 @@ systemctl status k3s || (echo "K3s is not running, exiting..." && exit 1)
 # The K3s config file is at /etc/rancher/k3s/k3s.yaml, we will copy it to the user directory
 mkdir -p $HOME/.kube
 sudo cp /etc/rancher/k3s/k3s.yaml $HOME/.kube/config
-sudo chmod 600 $HOME/.kube/config
+sudo chmod +x $HOME/.kube/config
 
 # Set environment variable for KUBECONFIG to the new copied config file
 export KUBEVERSION=$HOME/.kube/config
