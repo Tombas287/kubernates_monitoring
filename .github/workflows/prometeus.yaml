@@ -20,9 +20,9 @@ jobs:
         run: |
           # Install your app using the values from GitHub Secrets
           helm install k3s myrelease \
-            --set secrets.GENAI_API_KEY=${{ secrets.GENAI_API_KEY }} \
-            --set secrets.SPOTIPY_CLIENT_ID=${{ secrets.SPOTIPY_CLIENT_ID }} \
-            --set secrets.SPOTIPY_CLIENT_SECRET=${{ secrets.SPOTIPY_CLIENT_SECRET }}
+            --set secrets.keys.GENAI_API_KEY=${{ secrets.GENAI_API_KEY }} \
+            --set secrets.keys.SPOTIPY_CLIENT_ID=${{ secrets.SPOTIPY_CLIENT_ID }} \
+            --set secrets.keys.SPOTIPY_CLIENT_SECRET=${{ secrets.SPOTIPY_CLIENT_SECRET }}
           
       - name: Install pip dependencies
         run: |
