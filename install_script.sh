@@ -11,12 +11,9 @@ systemctl status k3s || (echo "K3s is not running, exiting..." && exit 1)
 # The K3s config file is at /etc/rancher/k3s/k3s.yaml, we will copy it to the user directory
 mkdir -p $HOME/.kube
 sudo cp /etc/rancher/k3s/k3s.yaml $HOME/.kube/config
-sudo chmod +x $HOME/.kube/config
-
-# Set environment variable for KUBECONFIG to the new copied config file
-export KUBEVERSION=$HOME/.kube/config
-export KUBECONFIG=$KUBEVERSION
-
+sudo chown $USER:$USER $HOME/.kube/config
+chmod 644 $HOME/.kube/config
+export KUBECONFIG=$HOME/.kube/config
 # Verify if kubectl can access the K3s cluster
 echo "Verifying kubectl access..."
 kubectl get nodes || (echo "K3s cluster not reachable, waiting for 30 seconds..." && sleep 30 && kubectl get nodes)
