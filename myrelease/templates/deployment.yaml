@@ -42,20 +42,11 @@ spec:
               protocol: TCP
           env:
             - name: GENAI_API_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: {{ .Values.secrets.name }}
-                  key: {{ .Values.secrets.keys.GENAI_API_KEY }}
+              key: {{ .Values.secrets.keys.GENAI_API_KEY }}
             - name: SPOTIPY_CLIENT_ID
-              valueFrom:
-                secretKeyRef:
-                  name: {{ .Values.secrets.name }}
-                  key: {{ .Values.secrets.keys.SPOTIPY_CLIENT_ID }}
+              key: {{ .Values.secrets.keys.SPOTIPY_CLIENT_ID }}
             - name: SPOTIPY_CLIENT_SECRET
-              valueFrom:
-                secretKeyRef:
-                  name: {{ .Values.secrets.name }}
-                  key: {{ .Values.secrets.keys.SPOTIPY_CLIENT_SECRET }}
+              key: {{ .Values.secrets.keys.SPOTIPY_CLIENT_SECRET }}
 
           livenessProbe:
             {{- toYaml .Values.livenessProbe | nindent 12 }}
