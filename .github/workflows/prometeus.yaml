@@ -13,8 +13,8 @@ jobs:
 
       - name: install dependencies
         run: |
-          chmod +x install_script.sh 
-          ./ install_script.sh
+          chmod +x install_script.sh
+          ./install_script.sh
 
       - name: Install My Application with Secrets
         run: |
