@@ -10,9 +10,9 @@ systemctl status k3s
 # Allow current user to access K3s config
 # Copy K3s Kubeconfig to user's home directory and set appropriate permissions
 mkdir -p $HOME/.kube
-cp /etc/rancher/k3s/k3s.yaml $HOME/.kube/config
-chmod 600 $HOME/.kube/config
-export KUBEVERSION=$HOME/.kube/config
+cp /etc/rancher/k3s/k3s.yaml $HOME/.kube
+chmod 600 $HOME/.kube
+export KUBEVERSION=$HOME/.kube
 export KUBECONFIG=$KUBEVERSION
 
 # Verify if kubectl can access the K3s cluster
