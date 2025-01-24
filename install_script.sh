@@ -32,8 +32,7 @@ helm install prometheus prometheus-community/prometheus
 
 # Wait for Prometheus to be available
 kubectl wait --for=condition=available --timeout=300s deployment/prometheus-server
-
 # Get Prometheus IP address
-export PROMETHEUS_IP=$(kubectl get svc prometheus-server -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
+export PROMETHEUS_IP=$(kubectl get svc prometheus-server -o jsonpath='{.spec.clusterIP}')
 echo "PROMETHEUS_IP=${PROMETHEUS_IP}" >> $GITHUB_ENV
 echo "Prometheus Server IP: $PROMETHEUS_IP"
