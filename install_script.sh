@@ -5,14 +5,16 @@ curl -sfL https://get.k3s.io | sh -
 echo "K3s installed. Verifying installation..."
 
 # Ensure K3s service is running
-systemctl status k3s
+systemctl status k3s || (echo "K3s is not running, exiting..." && exit 1)
 
-# Allow current user to access K3s config
-# Copy K3s Kubeconfig to user's home directory and set appropriate permissions
+# Fix permissions for the K3s config file so that the current user can read it
+# The K3s config file is at /etc/rancher/k3s/k3s.yaml, we will copy it to the user directory
 mkdir -p $HOME/.kube
-cp /etc/rancher/k3s/k3s.yaml $HOME/.kube
-chmod 600 $HOME/.kube
-export KUBEVERSION=$HOME/.kube
+sudo cp /etc/rancher/k3s/k3s.yaml $HOME/.kube/config
+sudo chmod 600 $HOME/.kube/config
+
+# Set environment variable for KUBECONFIG to the new copied config file
+export KUBEVERSION=$HOME/.kube/config
 export KUBECONFIG=$KUBEVERSION
 
 # Verify if kubectl can access the K3s cluster
