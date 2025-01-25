@@ -6,9 +6,9 @@ from langchain.chains.llm import LLMChain
 from dotenv import load_dotenv
 import os
 load_dotenv()
-URL = os.getenv("PROMETHEUS_URL")
+# URL = os.getenv("PROMETHEUS_URL")
 
-PROMETHEUS_URL = f"http://{URL}:9090/:9090/api/v1"
+PROMETHEUS_URL = f"http://localhost:9090/:9090/api/v1"
 
 def pod_status():
 
